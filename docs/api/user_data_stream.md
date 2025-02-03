@@ -168,8 +168,8 @@ def handle_margin_call(message: Dict[str, Any]):
 ```python
 import asyncio
 from typing import Dict, Any
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import (
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import (
     ConnectionError,
     AuthenticationError,
     UserStreamError
