@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "binance-futures-async"
+version = "0.1.0"
+authors = [
+    {name = "mumtazkahn", email = "mumtazz1993@gmail.com"},
+]
+description = "A high-performance, asynchronous Python library for Binance USD-M Futures WebSocket API"
+requires-python = ">=3.7"
+dependencies = [
+    "aiohttp>=3.8.0",
+    "cryptography>=3.4.0",
+]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Framework :: AsyncIO",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License"
+]
+keywords = ["binance", "futures", "websocket", "trading", "cryptocurrency", "async", "asyncio"]
+
+[project.urls]
+Homepage = "https://github.com/mumtazkahn/binance-futures-async"
+Documentation = "https://github.com/mumtazkahn/binance-futures-async/tree/main/docs"
+Repository = "https://github.com/mumtazkahn/binance-futures-async"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/binance_futures_async"]

@@ -1,0 +1,50 @@
+site_name: Binance Futures WebSocket
+site_description: A high-performance, asynchronous Python library for Binance USD-M Futures WebSocket API
+site_author: Your Name
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+            show_root_heading: true
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Getting Started: guides/getting_started.md
+    - Configuration: guides/configuration.md
+    - Examples: guides/examples.md
+  - API Reference:
+    - Client: api/client.md
+    - WebSocket Service: api/websocket_service.md
+    - Market Service: api/market_service.md
+    - User Data Stream: api/user_data_stream.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
