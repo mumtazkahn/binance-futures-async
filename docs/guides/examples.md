@@ -15,8 +15,8 @@ This guide provides practical examples for common use cases with the Binance Fut
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import ConnectionError, RequestError
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import ConnectionError, RequestError
 
 async def basic_orders():
     client = BinanceClient()

@@ -431,8 +431,8 @@ order = await ws_service.place_trailing_stop_market_order(
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import (
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import (
     ConnectionError,
     AuthenticationError,
     RequestError,

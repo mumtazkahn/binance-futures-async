@@ -174,8 +174,8 @@ The client's methods can raise several types of exceptions:
 Example with error handling:
 
 ```python
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import (
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import (
     ConnectionError,
     AuthenticationError,
     RequestError
@@ -230,8 +230,8 @@ Example of a well-structured application:
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import (
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import (
     ConnectionError,
     AuthenticationError,
     RequestError,

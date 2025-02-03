@@ -19,15 +19,15 @@ A high-performance, asynchronous Python library for Binance USD-M Futures latest
 ## Installation
 
 ```bash
-pip install binance-futures-websocket
+pip install binance-futures-async
 ```
 
 ## Quick Example
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import ConnectionError, AuthenticationError, RequestError
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import ConnectionError, AuthenticationError, RequestError
 
 async def main():
     client = BinanceClient()

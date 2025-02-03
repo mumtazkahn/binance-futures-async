@@ -28,8 +28,8 @@ The library provides three main components:
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import ConnectionError, AuthenticationError
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import ConnectionError, AuthenticationError
 
 async def main():
     # Initialize the client
@@ -59,7 +59,7 @@ if __name__ == "__main__":
 ### Market Streams Setup
 
 ```python
-from binance_futures_websocket import BinanceClient
+from binance_futures_async import BinanceClient
 
 def handle_market_data(message):
     print(f"Received market data: {message}")
@@ -89,7 +89,7 @@ async def main():
 ### User Data Stream Setup
 
 ```python
-from binance_futures_websocket import BinanceClient
+from binance_futures_async import BinanceClient
 
 def handle_user_data(message):
     print(f"Received user data: {message}")
@@ -142,7 +142,7 @@ def handle_kline(message):
 Always implement proper error handling:
 
 ```python
-from binance_futures_websocket.exceptions import (
+from binance_futures_async.exceptions import (
     ConnectionError,
     AuthenticationError,
     RequestError,

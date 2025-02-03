@@ -54,7 +54,7 @@ You can override any default configuration when initializing services.
 ### WebSocket API Configuration
 
 ```python
-from binance_futures_websocket import BinanceClient
+from binance_futures_async import BinanceClient
 
 async def main():
     client = BinanceClient()

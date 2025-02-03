@@ -20,7 +20,7 @@ A high-performance, asynchronous Python library for Binance USD-M Futures latest
 
 ### Installation
 ```bash
-pip install binance-futures-websocket
+pip install binance-futures-async
 ```
 
 
@@ -41,8 +41,8 @@ The WebSocket API provides unified, low-latency access to:
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import ConnectionError, AuthenticationError, RequestError
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import ConnectionError, AuthenticationError, RequestError
 
 async def main():
     client = BinanceClient()
@@ -116,8 +116,8 @@ For more examples and detailed API usage, see our [WebSocket Service API documen
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import ConnectionError, AuthenticationError, UserStreamError
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import ConnectionError, AuthenticationError, UserStreamError
 
 def handle_user_data(message):
     print(f"Received user data: {message}")
@@ -159,8 +159,8 @@ For complete details on user data handling, see our [User Data Stream API docume
 
 ```python
 import asyncio
-from binance_futures_websocket import BinanceClient
-from binance_futures_websocket.exceptions import ConnectionError, RequestError
+from binance_futures_async import BinanceClient
+from binance_futures_async.exceptions import ConnectionError, RequestError
 
 def handle_market_data(message):
     print(f"Received market data: {message}")
@@ -248,7 +248,7 @@ MARKET_STREAM_DEFAULTS = {
 You can override any default configuration when initializing services:
 
 ```python
-from binance_futures_websocket import BinanceClient
+from binance_futures_async import BinanceClient
 
 async def main():
     client = BinanceClient()
