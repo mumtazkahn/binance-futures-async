@@ -3,6 +3,7 @@ name: Upload Python Package
 on:
   release:
     types: [created]
+  workflow_dispatch:  # Enables manual trigger
 
 jobs:
   deploy:
@@ -10,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
-      uses: actions/setup-python@v4  # Use latest version
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
     - name: Install dependencies
@@ -19,7 +20,7 @@ jobs:
         pip install build twine
     - name: Clean up old builds
       run: |
-        rm -rf dist/ build/ *.egg-info  # Ensure all old files are deleted
+        rm -rf dist/ build/ *.egg-info
     - name: Build package
       run: python -m build
     - name: Publish package
