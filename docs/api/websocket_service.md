@@ -426,6 +426,48 @@ order = await ws_service.place_trailing_stop_market_order(
     activationPrice="50000"
 )
 ```
+### cancel_order
+
+```python
+async def cancel_order(
+    self, 
+    symbol: str,
+    order_id: Optional[int] = None,
+    orig_client_order_id: Optional[str] = None,
+    wait_for_response: bool = True
+) -> Dict[str, Any]
+```
+
+Cancels an active order.
+
+**Parameters:**
+- `symbol` (str): Trading pair symbol (e.g., "BTCUSDT")
+- `order_id` (int, optional): The order ID to cancel
+- `orig_client_order_id` (str, optional): The original client order ID to cancel
+- `wait_for_response` (bool): Whether to wait for server response. Defaults to True
+
+**Note:** Either `order_id` or `orig_client_order_id` must be provided.
+
+**Returns:**
+- Dict[str, Any]: Server response with order cancellation details
+
+**Raises:**
+- `RequestError`: If neither order_id nor orig_client_order_id is provided
+
+**Example:**
+```python
+# Cancel by order ID
+response = await ws_service.cancel_order(
+    symbol="BTCUSDT",
+    order_id=283194212
+)
+
+# Or cancel by client order ID
+response = await ws_service.cancel_order(
+    symbol="BTCUSDT",
+    orig_client_order_id="myOrder1"
+)
+```
 
 ## Complete Usage Example
 
