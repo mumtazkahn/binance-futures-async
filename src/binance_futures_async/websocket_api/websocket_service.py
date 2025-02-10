@@ -231,3 +231,28 @@ class WebSocketService:
             self.order_preparation.place_trailing_stop_market_order(**kwargs),
             wait_for_response,
         )
+    
+    async def cancel_order(
+        self, 
+        symbol: str,
+        order_id: Optional[int] = None,
+        orig_client_order_id: Optional[str] = None,
+        wait_for_response: bool = True
+    ) -> Dict[str, Any]:
+        if not order_id and not orig_client_order_id:
+            raise RequestError("Either order_id or orig_client_order_id must be provided")
+
+        params = {
+            "symbol": symbol
+        }
+        
+        if order_id:
+            params["orderId"] = order_id
+        if orig_client_order_id:
+            params["origClientOrderId"] = orig_client_order_id
+
+        return await self._send_request(
+            "order.cancel",
+            params,
+            wait_for_response
+        )
