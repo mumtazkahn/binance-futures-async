@@ -52,7 +52,8 @@ class MarketStreams:
         self.response_futures: Dict[int, asyncio.Future] = {}
 
         self._fatal_error = False
-
+        self.receive_messages_task = None
+        
     @property
     def is_connected(self) -> bool:
         return self._is_connected
@@ -82,14 +83,18 @@ class MarketStreams:
         """Establish WebSocket connection."""
         if self.session and not self.session.closed:
             await self.session.close()
-
+        
+        # Cancel any existing receive_messages task
+        if hasattr(self, 'receive_messages_task') and self.receive_messages_task and not self.receive_messages_task.done():
+            self.receive_messages_task.cancel()
+            
         self.session = aiohttp.ClientSession()
         try:
             self.ws = await asyncio.wait_for(
                 self.session.ws_connect(f"{self.base_url}/ws"),
                 timeout=self.config["connection_timeout"],
             )
-            asyncio.create_task(self._receive_messages())
+            self.receive_messages_task = asyncio.create_task(self._receive_messages())
             self.last_ping_time = time.time()
         except Exception as e:
             await self._cleanup()
@@ -268,8 +273,26 @@ class MarketStreams:
         return response
 
     async def _resubscribe(self):
-        if self.subscriptions:
-            await self.subscribe(list(self.subscriptions))
+        """Resubscribe to all previously subscribed streams after reconnection."""
+        if not self.subscriptions:
+            return
+            
+        current_subs = list(self.subscriptions)
+        # Clear subscriptions before resubscribing to avoid duplicates
+        self.subscriptions.clear()
+        
+        try:
+            response = await self.send_request("SUBSCRIBE", current_subs)
+            if response.get("result") is None:
+                self.subscriptions.update(current_subs)
+            else:
+                # Restore subscriptions list on failure
+                self.subscriptions.update(current_subs)
+                raise RequestError(f"Failed to resubscribe: {response}")
+        except Exception as e:
+            # Restore subscriptions list even on exception
+            self.subscriptions.update(current_subs)
+            raise
 
     async def list_subscriptions(self):
         return list(self.subscriptions)
